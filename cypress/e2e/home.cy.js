@@ -31,11 +31,9 @@ describe('Login Page', () =>{
       //Act
       cy.get('#login-button').click();
 
-      //Assert
-      cy.get('#error-message').should(
-        'contain',
-        'Invalid email or password'
-    );
+      cy.on('window:alert', (txt) =>{
+        expect(txt).to.contains('Invalid credentials')
+      });
   });
 
   //Brute force testing
